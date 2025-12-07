@@ -1,6 +1,6 @@
 {
-  "name": "Nexus Studio",
-  "description": "A versatile creative suite featuring AI Identity generation, QR code tools, Data visualization, and Image manipulation tools.",
+  "name": "Devs Tools",
+  "description": "Essential developer utilities including AI asset generation, data visualization, and QR codes.",
   "requestFramePermissions": [
     "camera"
   ]
