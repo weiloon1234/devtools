@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { FileJson, FileCode, Copy, Trash2, Check, AlignLeft, Minimize2, AlertCircle, ChevronRight, ChevronDown, ChevronsDownUp, ChevronsUpDown, Layers, ArrowDownAZ, FileCheck } from 'lucide-react';
+import { FileJson, FileCode, Copy, Trash2, Check, AlignLeft, Minimize2, AlertCircle, ChevronRight, ChevronDown, ChevronsDownUp, ChevronsUpDown, ArrowDownAZ, FileCheck } from 'lucide-react';
 import { parseToIR, findNextConflict, irToJson, JsonIR, Conflict } from '../services/jsonUtils';
 import DeduplicateModal from './DeduplicateModal';
 
@@ -308,16 +308,6 @@ const DataViewer: React.FC = () => {
         }, {} as any);
     }
     return data;
-  };
-
-  // Helper: Format JSON
-  const formatJSON = (raw: string) => {
-    try {
-      const parsed = JSON.parse(raw);
-      return JSON.stringify(parsed, null, 2);
-    } catch (e: any) {
-      throw new Error("Invalid JSON: " + e.message);
-    }
   };
 
   // Helper: Minify JSON

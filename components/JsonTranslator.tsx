@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Languages, Upload, ArrowRight, Download, Copy, Check, AlertCircle, FileJson, Lock, RefreshCw, Trash2, ArrowDownAZ, FileCheck, ArrowUpWideNarrow } from 'lucide-react';
+import { Languages, Upload, Download, Copy, Check, AlertCircle, FileJson, Lock, RefreshCw, Trash2, ArrowDownAZ, FileCheck, ArrowUpWideNarrow } from 'lucide-react';
 import { translateJson } from '../services/geminiService';
 import { parseToIR, findNextConflict, irToJson, JsonIR, Conflict } from '../services/jsonUtils';
 import DeduplicateModal from './DeduplicateModal';

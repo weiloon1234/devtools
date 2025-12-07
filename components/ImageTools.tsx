@@ -1,5 +1,5 @@
 
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { Upload, Image as ImageIcon, Crop, Sliders, Download, RotateCcw, Lock, Unlock, X, Check, FileImage, Wand2, Sparkles, Scissors } from 'lucide-react';
 import { removeBackgroundWithAI } from '../services/geminiService';
 

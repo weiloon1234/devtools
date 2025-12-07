@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import QRCode from 'qrcode';
-import { Download, RefreshCw, Briefcase, User, X, Upload, Image as ImageIcon } from 'lucide-react';
+import { Download, Briefcase, User, X, Upload, Image as ImageIcon } from 'lucide-react';
 import { GeneratedImage } from '../types';
 
 interface QRGeneratorProps {
@@ -17,7 +17,7 @@ const QRGenerator: React.FC<QRGeneratorProps> = ({ availableLogos }) => {
   const [selectedLogoId, setSelectedLogoId] = useState<string>('');
   const [uploadedLogo, setUploadedLogo] = useState<string | null>(null);
   
-  const [size, setSize] = useState(300);
+  const [size] = useState(300);
   
   const canvasRef = useRef<HTMLCanvasElement>(null);
 

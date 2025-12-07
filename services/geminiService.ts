@@ -1,6 +1,6 @@
 
 import { GoogleGenAI } from "@google/genai";
-import { AssetType, AvatarStyle, LogoStyle, ColorTheme, GenerateAssetOptions } from '../types';
+import { AvatarStyle, LogoStyle, ColorTheme, GenerateAssetOptions } from '../types';
 
 const getClient = (apiKey: string) => {
   if (!apiKey) {
@@ -79,7 +79,7 @@ const buildLogoPrompt = (brandName: string, context: string, style: LogoStyle, c
 
 // Helper to remove white background using flood fill from edges
 const removeWhiteBackground = (base64Data: string): Promise<string> => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const img = new Image();
     img.crossOrigin = "Anonymous";
     img.onload = () => {
