@@ -1,0 +1,7 @@
+{
+  "name": "Nexus Studio",
+  "description": "A versatile creative suite featuring AI Identity generation, QR code tools, Data visualization, and Image manipulation tools.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
