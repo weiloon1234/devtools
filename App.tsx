@@ -1,6 +1,6 @@
 
 import React, { useState, useCallback, useEffect } from 'react';
-import { AlertCircle, Key, Lock, Menu, Box } from 'lucide-react';
+import { AlertCircle, Key, Lock, Menu } from 'lucide-react';
 import Controls from './components/Controls';
 import Preview from './components/Preview';
 import QRStudio from './components/QRStudio';

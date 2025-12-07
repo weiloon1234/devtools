@@ -1,7 +1,7 @@
 
 import React from 'react';
 import {
-  Box, Wand2, QrCode, Image, Languages, Package, FileCode,
+  Wand2, QrCode, Image, Languages, Package, FileCode,
   Cpu, CheckCircle2, LogOut, Key, X
 } from 'lucide-react';
 import { WorkspaceView } from '../types';
