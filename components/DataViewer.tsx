@@ -32,7 +32,7 @@ const parseXmlToTree = (xmlString: string): XmlElement | null => {
       const content = node.textContent?.trim();
       return content ? { type: 'text', name: '#text', content } : null;
     }
-    
+
     if (node.nodeType === Node.ELEMENT_NODE) {
       const el = node as Element;
       const attributes: Record<string, string> = {};
@@ -69,10 +69,10 @@ const parseXmlToTree = (xmlString: string): XmlElement | null => {
 
 // --- XML Tree Component ---
 
-const XmlNode: React.FC<{ 
-  node: XmlElement; 
-  depth?: number; 
-  expansionConfig?: ExpansionConfig; 
+const XmlNode: React.FC<{
+  node: XmlElement;
+  depth?: number;
+  expansionConfig?: ExpansionConfig;
 }> = ({ node, depth = 0, expansionConfig }) => {
   const [expanded, setExpanded] = useState(true);
 
@@ -89,10 +89,10 @@ const XmlNode: React.FC<{
 
   if (node.type === 'text') {
     return (
-      <div className="font-mono text-sm leading-6 break-words whitespace-pre-wrap">
-         <span style={{ marginLeft: depth * 20 }} className="text-slate-200">
-           {node.content}
-         </span>
+      <div className="font-mono text-sm leading-6 whitespace-nowrap">
+        <span style={{ marginLeft: depth * 20 }} className="text-slate-200">
+          {node.content}
+        </span>
       </div>
     );
   }
@@ -112,7 +112,7 @@ const XmlNode: React.FC<{
 
   if (isSingleTextChild) {
     return (
-      <div className="font-mono text-sm leading-6 hover:bg-slate-800/50 px-1 rounded transition-colors break-words">
+      <div className="font-mono text-sm leading-6 hover:bg-slate-800/50 px-1 rounded transition-colors whitespace-nowrap">
         <span style={{ marginLeft: depth * 20 }}>
           <span className="text-sky-300">&lt;{node.name}</span>
           {renderAttributes()}
@@ -126,17 +126,17 @@ const XmlNode: React.FC<{
 
   return (
     <div className="font-mono text-sm leading-6">
-      <div 
-        className="flex items-center hover:bg-slate-800/50 px-1 rounded cursor-pointer group select-none transition-colors break-words"
+      <div
+        className="flex items-center hover:bg-slate-800/50 px-1 rounded cursor-pointer group select-none transition-colors whitespace-nowrap"
         onClick={handleToggle}
       >
         <span style={{ marginLeft: depth * 20 }} className="flex items-center flex-wrap">
           <span className="text-slate-500 w-4 h-4 flex items-center justify-center -ml-4 transition-transform duration-200 inline-block align-middle">
-             {hasChildren && (expanded ? <ChevronDown className="w-3 h-3" /> : <ChevronRight className="w-3 h-3" />)}
+            {hasChildren && (expanded ? <ChevronDown className="w-3 h-3" /> : <ChevronRight className="w-3 h-3" />)}
           </span>
           <span className="text-sky-300">&lt;{node.name}</span>
           {renderAttributes()}
-          
+
           {(!hasChildren) ? (
             <span className="text-sky-300"> /&gt;</span>
           ) : (
@@ -160,9 +160,9 @@ const XmlNode: React.FC<{
             />
           ))}
           <div className="hover:bg-slate-800/50 px-1 rounded transition-colors">
-             <span style={{ marginLeft: depth * 20 }} className="text-sky-300">
-                &lt;/{node.name}&gt;
-             </span>
+            <span style={{ marginLeft: depth * 20 }} className="text-sky-300">
+              &lt;/{node.name}&gt;
+            </span>
           </div>
         </div>
       )}
@@ -172,11 +172,11 @@ const XmlNode: React.FC<{
 
 // --- JSON Tree Components ---
 
-const JsonNode: React.FC<{ 
-  name?: string; 
-  value: any; 
-  isLast: boolean; 
-  depth?: number; 
+const JsonNode: React.FC<{
+  name?: string;
+  value: any;
+  isLast: boolean;
+  depth?: number;
   expansionConfig?: ExpansionConfig;
 }> = ({ name, value, isLast, depth = 0, expansionConfig }) => {
   const [expanded, setExpanded] = useState(true);
@@ -207,7 +207,7 @@ const JsonNode: React.FC<{
 
   if (!isObject) {
     return (
-      <div className="font-mono text-sm leading-6 hover:bg-slate-800/50 px-1 rounded transition-colors break-words">
+      <div className="font-mono text-sm leading-6 hover:bg-slate-800/50 px-1 rounded transition-colors whitespace-nowrap">
         <span style={{ marginLeft: depth * 20 }}>
           {name && <span className="text-sky-300 font-semibold">{name}: </span>}
           {renderValue(value)}
@@ -223,7 +223,7 @@ const JsonNode: React.FC<{
 
   if (isEmpty) {
     return (
-       <div className="font-mono text-sm leading-6 hover:bg-slate-800/50 px-1 rounded transition-colors break-words">
+      <div className="font-mono text-sm leading-6 hover:bg-slate-800/50 px-1 rounded transition-colors whitespace-nowrap">
         <span style={{ marginLeft: depth * 20 }}>
           {name && <span className="text-sky-300 font-semibold">{name}: </span>}
           <span className="text-slate-400">{openBracket}{closeBracket}</span>
@@ -235,13 +235,13 @@ const JsonNode: React.FC<{
 
   return (
     <div className="font-mono text-sm leading-6">
-      <div 
-        className="flex items-center hover:bg-slate-800/50 px-1 rounded cursor-pointer group select-none transition-colors break-words"
+      <div
+        className="flex items-center hover:bg-slate-800/50 px-1 rounded cursor-pointer group select-none transition-colors whitespace-nowrap"
         onClick={handleToggle}
       >
         <span style={{ marginLeft: depth * 20 }} className="flex items-center flex-wrap">
           <span className="text-slate-500 w-4 h-4 flex items-center justify-center transition-transform duration-200 mr-1">
-             {expanded ? <ChevronDown className="w-3 h-3" /> : <ChevronRight className="w-3 h-3" />}
+            {expanded ? <ChevronDown className="w-3 h-3" /> : <ChevronRight className="w-3 h-3" />}
           </span>
           {name && <span className="text-sky-300 font-semibold">{name}: </span>}
           <span className="text-slate-400">{openBracket}</span>
@@ -266,10 +266,10 @@ const JsonNode: React.FC<{
             />
           ))}
           <div className="hover:bg-slate-800/50 px-1 rounded transition-colors">
-             <span style={{ marginLeft: depth * 20 + 20 }} className="text-slate-400">
-                {closeBracket}
-                {!isLast && <span className="text-slate-500">,</span>}
-             </span>
+            <span style={{ marginLeft: depth * 20 + 20 }} className="text-slate-400">
+              {closeBracket}
+              {!isLast && <span className="text-slate-500">,</span>}
+            </span>
           </div>
         </div>
       )}
@@ -287,10 +287,10 @@ const DataViewer: React.FC = () => {
   const [dataType, setDataType] = useState<DataType>('unknown');
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
-  
+
   // Controls for tree expansion
   const [expansionConfig, setExpansionConfig] = useState<ExpansionConfig>({ version: 0, maxDepth: 2 });
-  
+
   // Deduplication State
   const [irData, setIrData] = useState<JsonIR | null>(null);
   const [currentConflict, setCurrentConflict] = useState<Conflict | null>(null);
@@ -325,7 +325,7 @@ const DataViewer: React.FC = () => {
     const reg = /(>)(<)(\/*)/g;
     xml = xml.replace(reg, '$1\r\n$2$3');
     let pad = 0;
-    
+
     xml.split('\r\n').forEach((node) => {
       let indent = 0;
       if (node.match(/.+<\/\w[^>]*>$/)) {
@@ -400,13 +400,13 @@ const DataViewer: React.FC = () => {
         // String formatting
         const pretty = formatXML(trimmed);
         setFormattedString(pretty);
-        
+
         setDataType('xml');
         // Reset expansion on new data
         setExpansionConfig(prev => ({ version: prev.version + 1, maxDepth: 2 }));
         return;
       } catch (e: any) {
-         // Fall through
+        // Fall through
       }
     }
 
@@ -425,7 +425,7 @@ const DataViewer: React.FC = () => {
         const minified = minifyJSON(input);
         setFormattedString(minified);
         const parsed = JSON.parse(minified);
-        setParsedData(parsed); 
+        setParsedData(parsed);
         setExpansionConfig(prev => ({ version: prev.version + 1, maxDepth: 1 }));
       } else if (dataType === 'xml') {
         const minified = minifyXML(input);
@@ -449,7 +449,7 @@ const DataViewer: React.FC = () => {
       const sorted = sortJsonRecursively(parsed);
       const sortedString = JSON.stringify(sorted, null, 2);
       setInput(sortedString);
-      
+
       // Update view
       setParsedData(sorted);
       setFormattedString(sortedString);
@@ -476,39 +476,39 @@ const DataViewer: React.FC = () => {
 
   // 2. Find next conflict or finish
   const processNextConflict = (ir: JsonIR) => {
-     const conflict = findNextConflict(ir);
-     if (conflict) {
-        setCurrentConflict(conflict);
-     } else {
-        // No more conflicts, update everything
-        const finalObj = irToJson(ir);
-        const jsonString = JSON.stringify(finalObj, null, 2);
-        setInput(jsonString);
-        setParsedData(finalObj);
-        setFormattedString(jsonString);
-        setDataType('json');
-        
-        setCurrentConflict(null);
-        setIrData(null);
-     }
+    const conflict = findNextConflict(ir);
+    if (conflict) {
+      setCurrentConflict(conflict);
+    } else {
+      // No more conflicts, update everything
+      const finalObj = irToJson(ir);
+      const jsonString = JSON.stringify(finalObj, null, 2);
+      setInput(jsonString);
+      setParsedData(finalObj);
+      setFormattedString(jsonString);
+      setDataType('json');
+
+      setCurrentConflict(null);
+      setIrData(null);
+    }
   };
 
   // 3. Resolve user choice
   const handleResolveConflict = (choice: 'keep-old' | 'keep-new') => {
-     if (!currentConflict || !irData) return;
-     
-     if (choice === 'keep-old') {
-        currentConflict.object.items[currentConflict.indexNew].deleted = true;
-     } else {
-        currentConflict.object.items[currentConflict.indexOld].deleted = true;
-     }
-     
-     processNextConflict(irData);
+    if (!currentConflict || !irData) return;
+
+    if (choice === 'keep-old') {
+      currentConflict.object.items[currentConflict.indexNew].deleted = true;
+    } else {
+      currentConflict.object.items[currentConflict.indexOld].deleted = true;
+    }
+
+    processNextConflict(irData);
   };
 
   const handleCancelDeduplicate = () => {
-     setIrData(null);
-     setCurrentConflict(null);
+    setIrData(null);
+    setCurrentConflict(null);
   };
 
   const handleCopy = () => {
@@ -533,7 +533,7 @@ const DataViewer: React.FC = () => {
 
   return (
     <div className="bg-slate-800/30 rounded-3xl border border-slate-700/50 p-4 md:p-6 h-[calc(100vh-8rem)] flex flex-col relative">
-      
+
       {/* Deduplication Modal */}
       {currentConflict && (
         <DeduplicateModal
@@ -556,7 +556,7 @@ const DataViewer: React.FC = () => {
             Data Viewer
           </h2>
         </div>
-        
+
         {dataType !== 'unknown' && (
           <div className="px-3 py-1 bg-slate-700 rounded-full text-xs font-mono text-slate-300 uppercase tracking-wider">
             {dataType} Detected
@@ -567,136 +567,136 @@ const DataViewer: React.FC = () => {
       <div className="grid lg:grid-cols-2 gap-4 flex-1 min-h-0">
         {/* Input Pane */}
         <div className="flex flex-col gap-2 h-full min-h-0">
-           <div className="flex justify-between items-center px-1 shrink-0">
-             <label className="text-sm font-medium text-slate-400">Input Raw Data</label>
-             <div className="flex items-center gap-2">
-                <button 
-                  onClick={handleDeduplicate}
-                  className="text-xs text-slate-400 hover:text-white flex items-center gap-1 transition-colors bg-slate-800 border border-slate-700 px-2 py-1 rounded"
-                  title="Detect and resolve duplicate keys interactively (JSON Only)"
-                >
-                   <FileCheck className="w-3 h-3" /> Deduplicate
-                </button>
-                <button 
-                  onClick={handleSortKeys}
-                  className="text-xs text-slate-400 hover:text-white flex items-center gap-1 transition-colors bg-slate-800 border border-slate-700 px-2 py-1 rounded"
-                  title="Sort keys alphabetically (JSON Only)"
-                >
-                   <ArrowDownAZ className="w-3 h-3" /> Sort
-                </button>
-                <div className="w-px h-4 bg-slate-700 mx-1"></div>
-                <button onClick={handleClear} className="text-xs text-slate-500 hover:text-red-400 flex items-center gap-1 transition-colors">
-                    <Trash2 className="w-3 h-3" /> Clear
-                </button>
-             </div>
-           </div>
-           <textarea
-             value={input}
-             onChange={(e) => setInput(e.target.value)}
-             className="flex-1 w-full bg-slate-900 border border-slate-700 rounded-xl p-4 font-mono text-xs md:text-sm text-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none resize-none custom-scrollbar"
-             placeholder="Paste JSON or XML here..."
-             spellCheck={false}
-           />
-           <div className="flex gap-2 shrink-0">
-             <button
-                onClick={detectAndFormat}
-                disabled={!input}
-                className="flex-1 bg-primary hover:bg-indigo-500 text-white py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-             >
-                <AlignLeft className="w-4 h-4" /> Format
-             </button>
-             <button
-                onClick={handleMinify}
-                disabled={!input}
-                className="flex-1 bg-slate-700 hover:bg-slate-600 text-white py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-             >
-                <Minimize2 className="w-4 h-4" /> Minify
-             </button>
-           </div>
+          <div className="flex justify-between items-center px-1 shrink-0">
+            <label className="text-sm font-medium text-slate-400">Input Raw Data</label>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleDeduplicate}
+                className="text-xs text-slate-400 hover:text-white flex items-center gap-1 transition-colors bg-slate-800 border border-slate-700 px-2 py-1 rounded"
+                title="Detect and resolve duplicate keys interactively (JSON Only)"
+              >
+                <FileCheck className="w-3 h-3" /> Deduplicate
+              </button>
+              <button
+                onClick={handleSortKeys}
+                className="text-xs text-slate-400 hover:text-white flex items-center gap-1 transition-colors bg-slate-800 border border-slate-700 px-2 py-1 rounded"
+                title="Sort keys alphabetically (JSON Only)"
+              >
+                <ArrowDownAZ className="w-3 h-3" /> Sort
+              </button>
+              <div className="w-px h-4 bg-slate-700 mx-1"></div>
+              <button onClick={handleClear} className="text-xs text-slate-500 hover:text-red-400 flex items-center gap-1 transition-colors">
+                <Trash2 className="w-3 h-3" /> Clear
+              </button>
+            </div>
+          </div>
+          <textarea
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className="flex-1 w-full bg-slate-900 border border-slate-700 rounded-xl p-4 font-mono text-xs md:text-sm text-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none resize-none custom-scrollbar"
+            placeholder="Paste JSON or XML here..."
+            spellCheck={false}
+          />
+          <div className="flex gap-2 shrink-0">
+            <button
+              onClick={detectAndFormat}
+              disabled={!input}
+              className="flex-1 bg-primary hover:bg-indigo-500 text-white py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <AlignLeft className="w-4 h-4" /> Format
+            </button>
+            <button
+              onClick={handleMinify}
+              disabled={!input}
+              className="flex-1 bg-slate-700 hover:bg-slate-600 text-white py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <Minimize2 className="w-4 h-4" /> Minify
+            </button>
+          </div>
         </div>
 
         {/* Output Pane */}
         <div className="flex flex-col gap-2 h-full min-h-0">
-           <div className="flex justify-between items-center px-1 shrink-0 h-6">
-             <label className="text-sm font-medium text-slate-400">
-               {(dataType === 'json' || dataType === 'xml') ? 'Interactive Tree View' : 'Formatted Output'}
-             </label>
-             
-             {/* Tree Controls */}
-             {(dataType === 'json' || dataType === 'xml') && (
-                <div className="flex items-center gap-1">
-                   <button 
-                     onClick={handleCollapseAll}
-                     className="p-1 hover:bg-slate-700 rounded text-slate-400 hover:text-white transition-colors"
-                     title="Collapse All"
-                   >
-                     <ChevronsDownUp className="w-4 h-4" />
-                   </button>
-                   <button 
-                     onClick={handleExpandLevel1}
-                     className="px-2 py-0.5 text-xs font-mono hover:bg-slate-700 rounded text-slate-400 hover:text-white transition-colors border border-transparent hover:border-slate-600"
-                     title="Expand Level 1"
-                   >
-                     Lvl 1
-                   </button>
-                   <button 
-                     onClick={handleExpandLevel2}
-                     className="px-2 py-0.5 text-xs font-mono hover:bg-slate-700 rounded text-slate-400 hover:text-white transition-colors border border-transparent hover:border-slate-600"
-                     title="Expand Level 2"
-                   >
-                     Lvl 2
-                   </button>
-                   <button 
-                     onClick={handleExpandAll}
-                     className="p-1 hover:bg-slate-700 rounded text-slate-400 hover:text-white transition-colors"
-                     title="Expand All"
-                   >
-                     <ChevronsUpDown className="w-4 h-4" />
-                   </button>
-                   <div className="w-px h-4 bg-slate-700 mx-1"></div>
-                </div>
-             )}
+          <div className="flex justify-between items-center px-1 shrink-0 h-6">
+            <label className="text-sm font-medium text-slate-400">
+              {(dataType === 'json' || dataType === 'xml') ? 'Interactive Tree View' : 'Formatted Output'}
+            </label>
 
-             {formattedString && (
-               <button 
-                 onClick={handleCopy}
-                 className="text-xs text-primary hover:text-indigo-300 flex items-center gap-1 transition-colors"
-               >
-                  {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-                  {copied ? 'Copied' : 'Copy'}
-               </button>
-             )}
-           </div>
-           
-           <div className="flex-1 bg-slate-900/80 border border-slate-700 rounded-xl p-4 overflow-auto custom-scrollbar relative">
-              {error ? (
-                <div className="flex flex-col items-center justify-center h-full text-red-400 gap-2 opacity-80">
-                   <AlertCircle className="w-8 h-8" />
-                   <p className="text-sm text-center">{error}</p>
-                </div>
-              ) : dataType === 'json' && parsedData ? (
-                 <div className="min-w-fit pb-4">
-                   <JsonNode 
-                      value={parsedData} 
-                      isLast={true} 
-                      expansionConfig={expansionConfig}
-                   />
-                 </div>
-              ) : dataType === 'xml' && xmlTree ? (
-                 <div className="min-w-fit pb-4">
-                    <XmlNode 
-                      node={xmlTree}
-                      expansionConfig={expansionConfig}
-                    />
-                 </div>
-              ) : formattedString ? (
-                 <pre className="font-mono text-sm leading-relaxed text-slate-300 whitespace-pre-wrap">{formattedString}</pre>
-              ) : (
-                 <div className="flex items-center justify-center h-full text-slate-600 text-sm italic">
-                    Formatted output will appear here
-                 </div>
-              )}
-           </div>
+            {/* Tree Controls */}
+            {(dataType === 'json' || dataType === 'xml') && (
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={handleCollapseAll}
+                  className="p-1 hover:bg-slate-700 rounded text-slate-400 hover:text-white transition-colors"
+                  title="Collapse All"
+                >
+                  <ChevronsDownUp className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={handleExpandLevel1}
+                  className="px-2 py-0.5 text-xs font-mono hover:bg-slate-700 rounded text-slate-400 hover:text-white transition-colors border border-transparent hover:border-slate-600"
+                  title="Expand Level 1"
+                >
+                  Lvl 1
+                </button>
+                <button
+                  onClick={handleExpandLevel2}
+                  className="px-2 py-0.5 text-xs font-mono hover:bg-slate-700 rounded text-slate-400 hover:text-white transition-colors border border-transparent hover:border-slate-600"
+                  title="Expand Level 2"
+                >
+                  Lvl 2
+                </button>
+                <button
+                  onClick={handleExpandAll}
+                  className="p-1 hover:bg-slate-700 rounded text-slate-400 hover:text-white transition-colors"
+                  title="Expand All"
+                >
+                  <ChevronsUpDown className="w-4 h-4" />
+                </button>
+                <div className="w-px h-4 bg-slate-700 mx-1"></div>
+              </div>
+            )}
+
+            {formattedString && (
+              <button
+                onClick={handleCopy}
+                className="text-xs text-primary hover:text-indigo-300 flex items-center gap-1 transition-colors"
+              >
+                {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                {copied ? 'Copied' : 'Copy'}
+              </button>
+            )}
+          </div>
+
+          <div className="flex-1 bg-slate-900/80 border border-slate-700 rounded-xl p-4 overflow-auto custom-scrollbar relative">
+            {error ? (
+              <div className="flex flex-col items-center justify-center h-full text-red-400 gap-2 opacity-80">
+                <AlertCircle className="w-8 h-8" />
+                <p className="text-sm text-center">{error}</p>
+              </div>
+            ) : dataType === 'json' && parsedData ? (
+              <div className="min-w-fit pb-4">
+                <JsonNode
+                  value={parsedData}
+                  isLast={true}
+                  expansionConfig={expansionConfig}
+                />
+              </div>
+            ) : dataType === 'xml' && xmlTree ? (
+              <div className="min-w-fit pb-4">
+                <XmlNode
+                  node={xmlTree}
+                  expansionConfig={expansionConfig}
+                />
+              </div>
+            ) : formattedString ? (
+              <pre className="font-mono text-sm leading-relaxed text-slate-300 whitespace-pre">{formattedString}</pre>
+            ) : (
+              <div className="flex items-center justify-center h-full text-slate-600 text-sm italic">
+                Formatted output will appear here
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
