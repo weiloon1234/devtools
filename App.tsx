@@ -8,6 +8,7 @@ import DataViewer from './components/DataViewer';
 import ImageTools from './components/ImageTools';
 import JsonTranslator from './components/JsonTranslator';
 import DependencyUpdater from './components/DependencyUpdater';
+import AppIconGenerator from './components/AppIconGenerator';
 import ApiKeyModal from './components/ApiKeyModal';
 import Sidebar from './components/Sidebar';
 import { generateAsset } from './services/geminiService';
@@ -291,6 +292,10 @@ const App: React.FC = () => {
             ) : view === 'dependency-updater' ? (
               <div className="animate-in fade-in duration-300 h-full">
                 <DependencyUpdater />
+              </div>
+            ) : view === 'app-icon-generator' ? (
+              <div className="animate-in fade-in duration-300 h-full">
+                <AppIconGenerator />
               </div>
             ) : (
               <div className="animate-in fade-in duration-300 h-full">

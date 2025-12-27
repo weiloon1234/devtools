@@ -1,6 +1,6 @@
 
 export type AssetType = 'avatar' | 'logo';
-export type WorkspaceView = 'identity' | 'qr' | 'viewer' | 'image-tools' | 'json-translator' | 'dependency-updater';
+export type WorkspaceView = 'identity' | 'qr' | 'viewer' | 'image-tools' | 'json-translator' | 'dependency-updater' | 'app-icon-generator';
 
 export type AvatarStyle = 
   | 'minimalist-flat' 

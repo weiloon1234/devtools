@@ -2,7 +2,7 @@
 import React from 'react';
 import {
   Wand2, QrCode, Image, Languages, Package, FileCode,
-  Cpu, CheckCircle2, LogOut, Key, X
+  Cpu, CheckCircle2, LogOut, Key, X, Smartphone
 } from 'lucide-react';
 import { WorkspaceView } from '../types';
 
@@ -32,6 +32,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     { id: 'identity', label: 'Identity Generator', icon: <Wand2 className="w-5 h-5" /> },
     { id: 'qr', label: 'QR Tools', icon: <QrCode className="w-5 h-5" /> },
     { id: 'image-tools', label: 'Image Tools', icon: <Image className="w-5 h-5" /> },
+    { id: 'app-icon-generator', label: 'App Icon Generator', icon: <Smartphone className="w-5 h-5" /> },
     { id: 'json-translator', label: 'JSON Translator', icon: <Languages className="w-5 h-5" /> },
     { id: 'dependency-updater', label: 'Dependency Updater', icon: <Package className="w-5 h-5" /> },
     { id: 'viewer', label: 'Data Viewer', icon: <FileCode className="w-5 h-5" /> },
